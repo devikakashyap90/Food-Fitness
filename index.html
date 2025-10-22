@@ -1,0 +1,331 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Food & Fitness for Devika</title>
+  <meta name="description" content="Food & Fitness for Devika — healthy recipes, quick workouts and everyday wellness." />
+  <!-- Google font -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg1: #FFFBF0;
+      --accent1: #ff7a59; /* warm orange */
+      --accent2: #33c48d; /* fresh green */
+      --muted: #6b6b6b;
+      --glass: rgba(255,255,255,0.7);
+      --round: 14px;
+      --maxwidth: 1100px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background: linear-gradient(180deg, rgba(255,250,240,1) 0%, rgba(245,255,250,1) 100%);
+      color:#222;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.4;
+    }
+
+    /* container */
+    .wrap{max-width:var(--maxwidth);margin:0 auto;padding:28px;}
+
+    /* sticky header */
+    header{
+      position:sticky;top:10px;z-index:40;
+      backdrop-filter: blur(6px);
+      background: linear-gradient(90deg, rgba(255,255,255,0.85), rgba(255,255,255,0.6));
+      border-radius:12px;
+      margin:10px 0;padding:10px 14px;display:flex;align-items:center;gap:12px;box-shadow:0 6px 20px rgba(34,34,34,0.06);
+    }
+    .logo{
+      display:flex;align-items:center;gap:10px;font-weight:800;font-size:18px;color:var(--accent1);
+    }
+    .logo .dot{width:42px;height:42px;border-radius:10px;background:linear-gradient(135deg,var(--accent1),var(--accent2));display:flex;align-items:center;justify-content:center;color:white;font-weight:800;box-shadow:0 6px 18px rgba(51,196,141,0.12);font-size:18px}
+    nav{margin-left:auto;display:flex;gap:8px;align-items:center}
+    nav a{color:#333;text-decoration:none;padding:8px 12px;border-radius:10px;font-weight:600}
+    nav a.cta{background:linear-gradient(90deg,var(--accent2),var(--accent1));color:white}
+    nav a:hover{opacity:.95;transform:translateY(-1px)}
+
+    /* Hero */
+    .hero{
+      margin-top:12px;
+      background: linear-gradient(135deg, rgba(255,255,255,0.8), rgba(255,255,255,0.6));
+      border-radius:18px;padding:28px;display:grid;grid-template-columns:1fr 360px;gap:20px;align-items:center;
+      box-shadow: 0 12px 40px rgba(255,122,89,0.06);
+    }
+    .hero h1{font-size:32px;margin:0 0 10px}
+    .hero p{color:var(--muted);margin:0 0 18px}
+    .hero .actions{display:flex;gap:10px;flex-wrap:wrap}
+    .btn{
+      padding:12px 16px;border-radius:12px;font-weight:700;border:0;cursor:pointer;
+      box-shadow:0 8px 18px rgba(34,34,34,0.06);
+    }
+    .btn.primary{background:linear-gradient(90deg,var(--accent2),var(--accent1));color:white}
+    .btn.ghost{background:transparent;border:2px solid rgba(34,34,34,0.06)}
+    .hero-card{
+      background: linear-gradient(180deg, #fff 0%, #fff 100%);
+      border-radius:14px;padding:12px;display:flex;flex-direction:column;gap:12px;align-items:center;
+      justify-content:center;
+      box-shadow: 0 14px 50px rgba(51,196,141,0.06);
+    }
+    .hero-card img{width:100%;border-radius:10px;object-fit:cover}
+
+    /* sections */
+    section{margin:28px 0;padding:18px;border-radius:14px}
+    .section-title{display:flex;align-items:end;gap:12px;margin-bottom:12px}
+    .section-title h2{margin:0;font-size:20px}
+    .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+
+    /* food card & fitness card */
+    .card{background:linear-gradient(180deg, rgba(255,255,255,0.95), rgba(255,255,255,0.9));padding:14px;border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,0.04)}
+    .card h3{margin:0 0 8px}
+    .card p{color:var(--muted);margin:0 0 12px}
+    .badge{display:inline-block;padding:6px 10px;border-radius:999px;font-weight:700;background:rgba(51,196,141,0.12);color:var(--accent2);font-size:13px}
+
+    /* video */
+    .video-row{display:grid;grid-template-columns:1fr 320px;gap:18px;align-items:start}
+    .video-wrap{position:relative;padding-top:56.25%;overflow:hidden;border-radius:12px}
+    .video-wrap iframe{position:absolute;left:0;top:0;width:100%;height:100%;border:0}
+    .subscribe{
+      background:linear-gradient(90deg,#fff, #fff);
+      border-radius:12px;padding:16px;display:flex;flex-direction:column;align-items:center;gap:10px;box-shadow:0 12px 36px rgba(255,122,89,0.06)
+    }
+
+    /* contact */
+    .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    input, textarea{width:100%;padding:12px;border-radius:10px;border:1px solid rgba(34,34,34,0.06);font-size:14px}
+    textarea{min-height:120px;resize:vertical}
+
+    footer{margin:20px 0;text-align:center;color:var(--muted);font-size:14px}
+
+    /* small screens */
+    @media (max-width:880px){
+      .hero{grid-template-columns:1fr; text-align:center}
+      .video-row{grid-template-columns:1fr}
+      .contact-grid{grid-template-columns:1fr}
+      nav{display:none}
+    }
+
+    /* micro animations */
+    .float{
+      animation: floaty 6s ease-in-out infinite;
+    }
+    @keyframes floaty{
+      0%{transform:translateY(0)}
+      50%{transform:translateY(-7px)}
+      100%{transform:translateY(0)}
+    }
+    a.smooth{cursor:pointer}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="logo">
+        <div class="dot">DF</div>
+        <div>
+          <div style="font-size:12px;color:#888">YouTube channel</div>
+          <div>Food &amp; Fitness for Devika</div>
+        </div>
+      </div>
+
+      <nav aria-label="Main navigation">
+        <a class="smooth" href="#home">Home</a>
+        <a class="smooth" href="#about">About</a>
+        <a class="smooth" href="#food">Food</a>
+        <a class="smooth" href="#fitness">Fitness</a>
+        <a class="smooth" href="#videos">Videos</a>
+        <a class="cta" id="subscribeTop" href="#" >Subscribe</a>
+      </nav>
+    </header>
+
+    <!-- HERO -->
+    <main id="home" class="hero" role="main" aria-label="Home hero">
+      <div>
+        <h1>Food &amp; Fitness for Devika</h1>
+        <p>Fresh recipes, quick workouts, and simple tips to help Devika — and anyone — feel great every day. New videos weekly!</p>
+        <div class="actions">
+          <button class="btn primary" onclick="document.getElementById('videos').scrollIntoView({behavior:'smooth'})">Watch latest video</button>
+          <a class="btn ghost" href="#contact">Work with Devika</a>
+        </div>
+
+        <div style="margin-top:18px;display:flex;gap:12px;flex-wrap:wrap">
+          <div class="card" style="display:inline-block">
+            <div class="badge">30-min meals</div>
+            <h3>Simple Meal Plans</h3>
+            <p>Easy-to-follow weekly plans with grocery lists and swaps for busy days.</p>
+          </div>
+          <div class="card" style="display:inline-block">
+            <div class="badge" style="background:rgba(255,122,89,0.12);color:var(--accent1)">Quick Workouts</div>
+            <h3>Home Workouts</h3>
+            <p>Bodyweight routines that fit into your morning routine (no equipment required).</p>
+          </div>
+        </div>
+      </div>
+
+      <aside class="hero-card float" aria-hidden="true">
+        <!-- Replace with a real photo or avatar -->
+        <img src="https://via.placeholder.com/360x220.png?text=Devika+%F0%9F%8D%9C%2B%F0%9F%8E%8B" alt="Devika - Food and Fitness" />
+        <div style="text-align:center">
+          <strong>Hi! I'm Devika</strong>
+          <div style="color:var(--muted);font-size:13px">Sharing healthy recipes & practical workouts</div>
+        </div>
+      </aside>
+    </main>
+
+    <!-- ABOUT -->
+    <section id="about" class="card" aria-labelledby="about-title">
+      <div class="section-title"><h2 id="about-title">About</h2></div>
+      <p style="margin-top:6px;color:var(--muted);">Food &amp; Fitness for Devika is a friendly space where nutrition meets movement — short recipe videos, beginner-friendly workouts, and real-life tips to make healthy living simple and joyful.</p>
+    </section>
+
+    <!-- FOOD -->
+    <section id="food" class="card" aria-labelledby="food-title">
+      <div class="section-title"><h2 id="food-title">Healthy Recipes</h2></div>
+      <div class="cards">
+        <div class="card">
+          <h3>Rainbow Buddha Bowl</h3>
+          <p>Quick roasted veggies, quinoa, and a tangy tahini dressing. Ready in 25 minutes.</p>
+          <div style="display:flex;gap:8px;margin-top:10px">
+            <button class="btn primary" onclick="alert('Replace alert with link to recipe or video')">View recipe</button>
+            <button class="btn" onclick="alert('Add to favorites')">Save</button>
+          </div>
+        </div>
+        <div class="card">
+          <h3>Protein-Packed Smoothie</h3>
+          <p>Banana, spinach, protein powder and nut butter. Great post-workout fuel.</p>
+        </div>
+        <div class="card">
+          <h3>5-ingredient Dinner</h3>
+          <p>Minimal ingredients, maximum flavor — perfect for busy weeknights.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- FITNESS -->
+    <section id="fitness" class="card" aria-labelledby="fit-title">
+      <div class="section-title"><h2 id="fit-title">Workout Tips</h2></div>
+      <div class="cards">
+        <div class="card">
+          <h3>15-Minute Full Body</h3>
+          <p>Quick circuits that raise your heart rate and tone the whole body.</p>
+        </div>
+        <div class="card">
+          <h3>Core Basics</h3>
+          <p>Beginner progressions for a strong and stable core.</p>
+        </div>
+        <div class="card">
+          <h3>Stretch & Recover</h3>
+          <p>Short mobility flows to keep you feeling fresh after workouts.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- VIDEOS -->
+    <section id="videos" class="card" aria-labelledby="videos-title">
+      <div class="section-title"><h2 id="videos-title">Latest Video</h2></div>
+      <div class="video-row">
+        <div>
+          <div class="video-wrap" id="videoEmbed">
+            <!--
+              IMPORTANT:
+              1) Replace VIDEO_ID_HERE with your YouTube video id (the part after "v=" in the video URL).
+                 Example: For https://www.youtube.com/watch?v=abc123, VIDEO ID is "abc123".
+              2) If you prefer to embed a playlist or channel uploads, replace iframe src accordingly.
+            -->
+            <iframe id="ytplayer" src="https://www.youtube.com/embed/VIDEO_ID_HERE" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div>
+
+          <h3 style="margin-top:12px">Quick 20-Min Cardio + Breakfast Idea</h3>
+          <p style="color:var(--muted);margin:6px 0">A fast morning routine: 20-minute cardio & a simple high-protein breakfast to fuel your day.</p>
+          <div style="display:flex;gap:8px">
+            <button class="btn primary" onclick="openYouTube()">Open on YouTube</button>
+            <button class="btn" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Collaborate</button>
+          </div>
+        </div>
+
+        <aside class="subscribe">
+          <div style="font-weight:800;font-size:18px">Subscribe to Devika</div>
+          <div style="color:var(--muted);font-size:13px;text-align:center">Get notified when new recipes and workouts drop!</div>
+
+          <!-- IMPORTANT: Replace with your actual YouTube channel or subscribe link -->
+          <a id="subscribeBtn" class="btn primary" href="https://www.youtube.com/channel/YOUR_CHANNEL_ID" target="_blank" rel="noopener">Subscribe on YouTube</a>
+
+          <div style="font-size:13px;color:var(--muted)">Follow on social: <strong>@devika_fit</strong></div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="card" aria-labelledby="contact-title">
+      <div class="section-title"><h2 id="contact-title">Contact</h2></div>
+      <div style="color:var(--muted);margin-bottom:12px">For collaborations, brand inquiries, or recipe suggestions — drop a message below.</div>
+      <form onsubmit="handleContact(event)">
+        <div class="contact-grid">
+          <input type="text" id="name" placeholder="Your name" required />
+          <input type="email" id="email" placeholder="Email" required />
+          <textarea id="message" placeholder="Message" required></textarea>
+        </div>
+        <div style="margin-top:12px;display:flex;gap:8px">
+          <button class="btn primary" type="submit">Send message</button>
+          <button class="btn" type="reset">Clear</button>
+        </div>
+      </form>
+    </section>
+
+    <footer>
+      <div>© <span id="year"></span> Food &amp; Fitness for Devika — Made with ❤</div>
+      <div style="margin-top:6px;color:var(--muted)">Replace placeholders (video ID, channel links, images) with your real content.</div>
+    </footer>
+  </div>
+
+  <script>
+    // small helpers
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // smooth scrolling for header links
+    document.querySelectorAll('a.smooth, nav a').forEach(a=>{
+      a.addEventListener('click', function(e){
+        const href = this.getAttribute('href');
+        if(href && href.startsWith('#')){
+          e.preventDefault();
+          document.querySelector(href).scrollIntoView({behavior:'smooth'});
+        }
+      });
+    });
+
+    // contact form (static demo)
+    function handleContact(e){
+      e.preventDefault();
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const msg = document.getElementById('message').value.trim();
+      // This demo does NOT send email. Integrate with Formspree/Netlify or your backend.
+      alert('Thanks ' + (name||'there') + '! Message received. (Demo only — integrate a backend to send.)');
+      e.target.reset();
+    }
+
+    // open YouTube video page - open channel video link or channel
+    function openYouTube(){
+      // Replace with your full video URL or channel
+      const videoUrl = 'https://www.youtube.com/watch?v=VIDEO_ID_HERE';
+      window.open(videoUrl, '_blank', 'noopener');
+    }
+
+    // top subscribe button scroll behavior
+    const subscribeTop = document.getElementById('subscribeTop');
+    subscribeTop.addEventListener('click', (e) => {
+      e.preventDefault();
+      document.getElementById('videos').scrollIntoView({behavior:'smooth'});
+    });
+
+    // Small UX: If user wants to subscribe via in-page button, scroll to subscribe
+    document.getElementById('subscribeBtn').addEventListener('click', function(){
+      // no-op: link opens in new tab
+    });
+  </script>
+</body>
+</html>
